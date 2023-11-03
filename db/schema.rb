@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2023_11_03_014035) do
     t.string "card_number"
     t.string "transaction_date"
     t.boolean "has_cbk"
-    t.integer "transaction_amount"
+    t.decimal "transaction_amount", precision: 10, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["card_number"], name: "index_transactions_on_card_number"
