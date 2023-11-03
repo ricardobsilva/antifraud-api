@@ -1,24 +1,23 @@
-# README
+# My Rails Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Preparing the Application
 
-Things you may want to cover:
+To load data from the spreadsheet (which will be used to assist in determining whether to accept or reject a particular transaction), run the following command:
 
-* Ruby version
+```bash
+   rails import_csv:import_data
+```
 
-* System dependencies
+## Running the Application
 
-* Configuration
+```bash
+bundle install
+bundle exec rails db:create db:migrate
+bundle exec rails s
+```
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Running Tests
+```bash
+bundle exec rspec spec/
+```
