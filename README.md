@@ -1,4 +1,5 @@
 # My Rails Application
+You can find some topics about the acquisition market in the answers.md file, located in the root of the project
 
 ## Preparing the Application
 
