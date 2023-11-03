@@ -71,4 +71,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+  config.before(:suite) do
+    Redis.current.flushdb
+  end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TransactionService, type: :service do
-  let(:subject) { TransactionService.new(params).call }
+  let(:subject) { described_class.new(params).call }
   let(:user) { create(:user) }
   let(:merchant) { create(:merchant) }
   let(:device) {create(:device) }
@@ -23,6 +23,7 @@ RSpec.describe TransactionService, type: :service do
       it do
         expect(subject[:transaction_id]).to eq(params[:transaction_id])
         expect(subject[:recommendation]).to eq("approved")
+        expect(Transaction.count).to eq(1)
       end
     end
 
@@ -54,7 +55,7 @@ RSpec.describe TransactionService, type: :service do
     context 'when the transaction amount exceeds the limit or is after the cutoff time' do
       let(:params) do
         {
-          "transaction_id": 2342357,
+          "transaction_id": 2342351,
           "merchant_id": merchant.id,
           "user_id": user.id,
           "card_number": "434505******9116",
@@ -71,6 +72,7 @@ RSpec.describe TransactionService, type: :service do
       it 'must deny the transaction' do
         expect(subject[:transaction_id]).to eq(params[:transaction_id])
         expect(subject[:recommendation]).to eq("deny")
+        expect(Transaction.count).to eq(0)
       end
     end
   end 
