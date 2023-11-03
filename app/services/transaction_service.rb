@@ -25,7 +25,7 @@ class TransactionService
   end
 
   def invalid_transaction?
-    user_has_transactions_with_fraud_chargebacks? || !valid_transaction_amount?
+    user_has_transactions_with_fraud_chargebacks? || !valid_transaction_amount? || reached_same_transaction_limit_within_timeframe?
   end
 
   def user_has_transactions_with_fraud_chargebacks?
@@ -34,5 +34,9 @@ class TransactionService
   
   def valid_transaction_amount?
     AntifraudServices::TransactionAmountValidatorService.new(params[:transaction_amount]).call
+  end
+
+  def reached_same_transaction_limit_within_timeframe?
+    AntifraudServices::TransactionRateLimitService.new(params[:user_id], params[:transaction_id]).call
   end
 end
