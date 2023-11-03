@@ -7,6 +7,7 @@ class CreateTransactions < ActiveRecord::Migration[6.0]
       t.string :card_number
       t.string :transaction_date
       t.boolean :has_cbk
+      t.integer :transaction_amount
 
       t.timestamps
     end
