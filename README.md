@@ -13,6 +13,7 @@ To load data from the spreadsheet (which will be used to assist in determining w
 ```bash
 bundle install
 bundle exec rails db:create db:migrate
+redis-server
 bundle exec rails s
 ```
 
