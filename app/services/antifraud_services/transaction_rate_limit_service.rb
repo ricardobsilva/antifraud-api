@@ -19,7 +19,7 @@ module AntifraudServices
     def exceeded_transaction_limit?
       key = "user_transactions:#{@user_id}:#{@transaction_amount}"
 
-      if redis.exists(key)
+      if redis.exists?(key)
         return true
       else
         redis.setex(key, RATE_LIMIT, '1')

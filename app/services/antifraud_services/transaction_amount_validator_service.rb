@@ -4,7 +4,7 @@ module AntifraudServices
     CUTOFF_HOUR = 22
   
     def initialize(amount)
-      @amount = amount
+      @amount = amount.to_d
     end
   
     def call

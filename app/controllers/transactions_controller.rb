@@ -1,5 +1,12 @@
 class TransactionsController < ApplicationController
   def create
+    transaction = TransactionService.new(transaction_params).call
+
+    if transaction[:recommendation] == "approved"
+      render json: transaction, status: :created
+    else
+      render json: transaction, status: :unprocessable_entity
+    end
   end
 
   private
